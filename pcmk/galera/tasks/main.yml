@@ -8,4 +8,4 @@
   - rsync
 
 - name: systemctl enable xinetd
-  service: name=enable enabled=yes state=started
+  service: name=xinetd enabled=yes state=started

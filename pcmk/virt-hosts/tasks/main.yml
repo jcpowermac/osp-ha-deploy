@@ -8,7 +8,7 @@
   - fence-virtd-libvirt
 
 - name: systemctl enable fence_virtd
-  service: name=enable enabled=yes state=started
+  service: name=fence_virtd enabled=yes state=started
 
 - name: Install software
   yum: name={{ item }} state=present

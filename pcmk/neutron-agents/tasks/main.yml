@@ -8,7 +8,7 @@
   - openvswitch
 
 - name: systemctl enable openvswitch
-  service: name=enable enabled=yes state=started
+  service: name=openvswitch enabled=yes state=started
 
 - name: openstack-command set tunnel_types
   command: openstack-config --verbose --set /etc/neutron/plugins/openvswitch/ovs_neutron_plugin.ini agent tunnel_types vxlan

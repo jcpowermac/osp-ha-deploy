@@ -85,10 +85,10 @@ def split_systemctl_arguments(line):
 
     for a in args:
         if "enable" in a:
-            parameters += "  service: name=%s enabled=yes state=started\n" % args[1]
+            parameters += "  service: name=%s enabled=yes state=started\n" % args[2]
             write_to_file = True
         elif "disable" in a:
-            parameters += "  service: name=%s enabled=no state=stopped\n" % args[1]
+            parameters += "  service: name=%s enabled=no state=stopped\n" % args[2]
             write_to_file = True
     if write_to_file:
         file.writelines(parameters)

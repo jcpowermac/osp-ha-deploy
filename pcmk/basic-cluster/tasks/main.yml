@@ -25,10 +25,10 @@
   - ntpdate
 
 - name: systemctl enable pcsd
-  service: name=enable enabled=yes state=started
+  service: name=pcsd enabled=yes state=started
 - name: systemctl disable firewalld
-  service: name=disable enabled=no state=stopped
+  service: name=firewalld enabled=no state=stopped
 - name: systemctl enable ntpdate
-  service: name=enable enabled=yes state=started
+  service: name=ntpdate enabled=yes state=started
 - name: systemctl enable ntpd
-  service: name=enable enabled=yes state=started
+  service: name=ntpd enabled=yes state=started

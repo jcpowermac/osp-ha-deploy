@@ -6,7 +6,7 @@
   - nfs-utils
 
 - name: systemctl enable nfs-server
-  service: name=enable enabled=yes state=started
+  service: name=nfs-server enabled=yes state=started
 
 - name: Install software
   yum: name={{ item }} state=present
@@ -14,7 +14,7 @@
   - haproxy
 
 - name: systemctl enable haproxy
-  service: name=enable enabled=yes state=started
+  service: name=haproxy enabled=yes state=started
 
 - name: Install software
   yum: name={{ item }} state=present
@@ -22,7 +22,7 @@
   - bind
 
 - name: systemctl enable named
-  service: name=enable enabled=yes state=started
+  service: name=named enabled=yes state=started
 
 - name: Install software
   yum: name={{ item }} state=present
@@ -30,4 +30,4 @@
   - dhcp
 
 - name: systemctl enable dhcpd
-  service: name=enable enabled=yes state=started
+  service: name=dhcpd enabled=yes state=started
