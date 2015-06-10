@@ -34,7 +34,7 @@ def split_openstack_config_arguments(line):
     output = """\n- name: openstack-command set %s
   command: %s
   register: cmd
-  changed_when: \"'changed' in cmd.stderr\"\n""" % (args[5], new_line)
+  changed_when: \"'unchanged' not in cmd.stderr\"\n""" % (args[5], new_line)
     #print output
     file.writelines(output)
 
