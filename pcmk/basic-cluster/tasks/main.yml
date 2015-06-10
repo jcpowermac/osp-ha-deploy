@@ -20,9 +20,6 @@
   - corosync
   - fence-agents-all
   - resource-agents
-  - nfs-utils
-  - ntp
-  - ntpdate
 
 - name: systemctl enable pcsd
   service: name=pcsd enabled=yes state=started

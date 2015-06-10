@@ -41,6 +41,7 @@
   - ntp
   - ntpdate
   - sos
+  - nfs-utils
 
 - name: systemctl enable ntpdate
   service: name=ntpdate enabled=yes state=started

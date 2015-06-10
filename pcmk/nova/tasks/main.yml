@@ -133,6 +133,21 @@
   register: cmd
   changed_when: "'unchanged' not in cmd.stderr"
 
+- name: openstack-command set notify_api_faults
+  command: openstack-config --verbose --set /etc/nova/nova.conf DEFAULT notify_api_faults False
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set vif_plugging_is_fatal
+  command: openstack-config --verbose --set /etc/nova/nova.conf DEFAULT vif_plugging_is_fatal True
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set vif_plugging_timeout
+  command: openstack-config --verbose --set /etc/nova/nova.conf DEFAULT vif_plugging_timeout 300
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
 - name: openstack-command set use_local
   command: openstack-config --verbose --set /etc/nova/nova.conf conductor use_local false
   register: cmd
