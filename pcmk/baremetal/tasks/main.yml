@@ -1,0 +1,28 @@
+---
+
+- name: Install software
+  yum: name={{ item }} state=present
+  with_items:
+  - clean
+  - all
+
+
+- name: Install software
+  yum: name={{ item }} state=present
+  with_items:
+  - update
+
+
+- name: Install software
+  yum: name={{ item }} state=present
+  with_items:
+  - pacemaker
+  - fence-agents
+  - resource-agents
+  - pcs
+  - cman
+  - ccs
+  - libvirt
+  - qemu-kvm
+  - bind-utils
+

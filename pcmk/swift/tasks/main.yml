@@ -1,0 +1,40 @@
+---
+
+- name: Install software
+  yum: name={{ item }} state=present
+  with_items:
+  - openstack-swift-proxy
+  - openstack-utils
+  - python-swiftclient
+  - openstack-swift-container
+
+
+- name: openstack-command set auth_host
+  command: openstack-config --verbose --set /etc/swift/proxy-server.conf filter:authtoken auth_host vip-keystone
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set admin_tenant_name
+  command: openstack-config --verbose --set /etc/swift/proxy-server.conf filter:authtoken admin_tenant_name services
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set admin_user
+  command: openstack-config --verbose --set /etc/swift/proxy-server.conf filter:authtoken admin_user swift
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set admin_password
+  command: openstack-config --verbose --set /etc/swift/proxy-server.conf filter:authtoken admin_password swifttest
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set bind_ip
+  command: openstack-config --verbose --set /etc/swift/proxy-server.conf DEFAULT bind_ip $(ip addr show dev eth1 scope global | grep dynamic| sed -e 's#.*inet ##g' -e 's#/.*##g')
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set concurrency
+  command: openstack-config --verbose --set /etc/swift/object-expirer.conf object-expirer concurrency 100
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"

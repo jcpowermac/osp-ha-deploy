@@ -1,0 +1,72 @@
+---
+
+- name: Install software
+  yum: name={{ item }} state=present
+  with_items:
+  - openstack-swift-object
+  - openstack-swift-container
+  - openstack-swift-account
+  - openstack-utils
+  - rsync
+  - xfsprogs
+
+
+- name: openstack-command set bind_ip
+  command: openstack-config --verbose --set /etc/swift/object-server.conf DEFAULT bind_ip 0.0.0.0
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set devices
+  command: openstack-config --verbose --set /etc/swift/object-server.conf DEFAULT devices /local/swiftstorage
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set mount_check
+  command: openstack-config --verbose --set /etc/swift/object-server.conf DEFAULT mount_check false
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set bind_ip
+  command: openstack-config --verbose --set /etc/swift/account-server.conf DEFAULT bind_ip 0.0.0.0
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set devices
+  command: openstack-config --verbose --set /etc/swift/account-server.conf DEFAULT devices /local/swiftstorage
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set mount_check
+  command: openstack-config --verbose --set /etc/swift/account-server.conf DEFAULT mount_check false
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set bind_ip
+  command: openstack-config --verbose --set /etc/swift/container-server.conf DEFAULT bind_ip 0.0.0.0
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set devices
+  command: openstack-config --verbose --set /etc/swift/container-server.conf DEFAULT devices /local/swiftstorage
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set mount_check
+  command: openstack-config --verbose --set /etc/swift/container-server.conf DEFAULT mount_check false
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set mount_check
+  command: openstack-config --verbose --set /etc/swift/object-server.conf DEFAULT mount_check false
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set mount_check
+  command: openstack-config --verbose --set /etc/swift/account-server.conf DEFAULT mount_check false
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
+
+- name: openstack-command set mount_check
+  command: openstack-config --verbose --set /etc/swift/container-server.conf DEFAULT mount_check false
+  register: cmd
+  changed_when: "'unchanged' not in cmd.stderr"
